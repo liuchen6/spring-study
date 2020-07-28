@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="org.liuc.pojo.Address">
+        <property name="address" value="nanjing"/>
+    </bean>
+
+    <bean id="student" class="org.liuc.pojo.Student">
+        <!--1、普通注入：value-->
+        <property name="name" value="liuc"/>
+        <!--2、Bean注入：ref-->
+        <property name="address" ref="address"/>
+        <!--3、数组-->
+        <property name="books">
+            <array>
+                <value>三国演义</value>
+                <value>红楼梦</value>
+                <value>水浒传</value>
+                <value>西游记</value>
+            </array>
+        </property>
+        <!--4、List-->
+        <property name="hobbies">
+            <list>
+                <value>coding</value>
+                <value>running</value>
+                <value>chatting</value>
+            </list>
+        </property>
+        <!--5、Map-->
+        <property name="card">
+            <map>
+                <entry key="身份证" value="111111111111111111"/>
+                <entry key="银行卡" value="2222222222222222222"/>
+            </map>
+        </property>
+        <!--6、Set-->
+        <property name="games">
+            <set>
+                <value>LOL</value>
+                <value>BOB</value>
+                <value>COC</value>
+            </set>
+        </property>
+        <!--7、null-->
+        <property name="wife">
+            <null/>
+        </property>
+        <!--Properties-->
+        <property name="info">
+            <props>
+                <prop key="url">jdbc:mysql://localhost:3306/testdb</prop>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

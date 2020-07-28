@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.liuc.pojo.Cat"/>
+    <bean id="dog" class="org.liuc.pojo.Dog"/>
+
+    <bean class="org.liuc.pojo.Person" autowire="byType">
+        <property name="name" value="liuc"/>
+    </bean>
+
+</beans>

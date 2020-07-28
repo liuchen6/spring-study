@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--注册bean-->
+    <bean id="userServiceImpl" class="org.liuc.service.UserServiceImpl"/>
+    <bean id="beforeLog" class="org.liuc.log.BeforeLog"/>
+    <bean id="afterLog" class="org.liuc.log.AfterLog"/>
+
+    <!--方法一：使用原生Spring API接口-->
+    <!--配置AOP：需要导入aop的命名空间约束-->
+    <aop:config>
+        <!--切入点：expression：表达式，execution（要执行的位置：* * * * *）-->
+        <aop:pointcut id="pointcut" expression="execution(* org.liuc.service.UserServiceImpl.*(..))"/>
+
+        <!--配置切入方法-->
+        <aop:advisor advice-ref="beforeLog" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+
+    </aop:config>
+
+    <!--方法二：自定义类-->
+    <bean id="diyLog" class="org.liuc.log.diyLog"/>
+
+    <aop:config>
+        <!--自定义切面，ref为要引入的切面类-->
+        <aop:aspect ref="diyLog">
+            <!--切入点-->
+            <aop:pointcut id="point" expression="execution(* org.liuc.service.UserServiceImpl.*(..))"/>
+            <!--通知-->
+            <aop:before method="before" pointcut-ref="point"/>
+            <aop:after method="after" pointcut-ref="point"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--方式三：使用注解实现AOP-->
+    <bean id="annotationPointCut" class="org.liuc.log.AnnotationPointCut"/>
+    <!--开启注解支持，默认JDK（proxy-target-class="false"） cglib（proxy-target-class="true"）-->
+    <aop:aspectj-autoproxy/>
+
+</beans>

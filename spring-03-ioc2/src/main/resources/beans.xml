@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--默认使用无参构造函数创建对象-->
+    <bean id="user" class="org.liuc.pojo.User">
+        <property name="name" value="liuc"/>
+    </bean>
+
+    <bean id="user2" class="org.liuc.pojo.User2">
+
+    </bean>
+
+    <!--根据参数下标赋值-->
+    <!--<bean id="user" class="org.liuc.pojo.User">
+        <constructor-arg index="0" value="liuc1"/>
+    </bean>
+
+    &lt;!&ndash;根据参数类型赋值&ndash;&gt;
+    <bean id="user" class="org.liuc.pojo.User">
+        <constructor-arg type="java.lang.String" value="liuc2"/>
+    </bean>
+
+    &lt;!&ndash;通过参数名赋值&ndash;&gt;
+    <bean id="user" class="org.liuc.pojo.User">
+        <constructor-arg name="name" value="liuc3"/>
+    </bean>-->
+
+</beans>
